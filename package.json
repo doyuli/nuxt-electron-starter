@@ -8,6 +8,7 @@
   "main": "dist/main/index.cjs",
   "scripts": {
     "setup": "node scripts/setup.js",
+    "release": "bumpp",
     "dev": "concurrently -k -n renderer,electron-build,electron -c blue,green,magenta \"pnpm dev:renderer\" \"pnpm dev:electron\" \"pnpm dev:app\"",
     "dev:app": "wait-on http://localhost:8086 dist/main/index.cjs dist/preload/index.cjs && ELECTRON_RENDERER_URL=http://localhost:8086 electron .",
     "dev:renderer": "nuxt dev -p 8086",
@@ -41,6 +42,7 @@
     "@tailwindcss/vite": "^4.3.2",
     "@types/node": "^26.1.0",
     "@vueuse/nuxt": "14.3.0",
+    "bumpp": "^11.1.0",
     "concurrently": "^10.0.3",
     "electron": "^43.1.0",
     "electron-builder": "^26.15.3",
