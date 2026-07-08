@@ -1,10 +1,5 @@
 import type { IpcMainInvokeEvent, OpenDialogOptions, SaveDialogOptions } from 'electron'
-import {
-  BrowserWindow,
-  dialog,
-  ipcMain,
-
-} from 'electron'
+import { BrowserWindow, dialog, ipcMain } from 'electron'
 import { IPC_CHANNELS } from '../../shared/ipc-contract'
 import { parseOpenFileOptions, parseSaveFileOptions } from '../../shared/ipc-schemas'
 

@@ -1,5 +1,4 @@
 import type { FileFilter, OpenFileOptions, OpenFileProperty, SaveFileOptions } from './ipc-contract'
-
 import { z } from 'zod'
 
 const openFileProperties = [

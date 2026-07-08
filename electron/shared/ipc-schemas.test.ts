@@ -1,5 +1,4 @@
 import { describe, expect, it } from 'vitest'
-
 import { parseOpenFileOptions, parseSaveFileOptions } from './ipc-schemas'
 
 describe('iPC option schemas', () => {
