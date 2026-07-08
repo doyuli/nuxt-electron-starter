@@ -1,0 +1,5 @@
+nodeLinker: hoisted
+shellEmulator: true
+
+# eslint-disable-next-line pnpm/yaml-enforce-settings
+trustPolicy: none

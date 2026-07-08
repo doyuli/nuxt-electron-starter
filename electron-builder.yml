@@ -1,0 +1,19 @@
+appId: com.doyuli.nuxt-electron-starter
+productName: Nuxt Electron Starter
+directories:
+  output: release
+files:
+  - dist/**/*
+  - .output/**/*
+  - package.json
+  - public/**/*
+asar: true
+mac:
+  category: public.app-category.developer-tools
+  identity: null
+win:
+  target:
+    - nsis
+linux:
+  target:
+    - AppImage
