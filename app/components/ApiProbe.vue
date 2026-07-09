@@ -4,6 +4,7 @@ import { AlertCircle, Bug, CheckCircle2, ExternalLink, FolderOpen, Loader2, Plug
 import { ref } from 'vue'
 import { Button } from '~/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card'
+import { useElectronBridge } from '~/composables/useElectronBridge'
 import { cn } from '~/lib/utils'
 
 defineProps<{
@@ -23,13 +24,13 @@ const initialProbeState: ProbeState = {
 
 const state = ref<ProbeState>(initialProbeState)
 
+const { getElectronApi, isAvailable } = useElectronBridge()
+
 const hasBridge = computed(() => state.value.bridgeAvailable)
 const StatusIcon = computed(() => state.value.status === 'ready' ? CheckCircle2 : state.value.status === 'error' ? AlertCircle : Loader2)
 
 onMounted(async () => {
-  const api = window.electronAPI
-
-  if (!api) {
+  if (!isAvailable.value) {
     queueMicrotask(() => {
       state.value = {
         status: 'error',
@@ -41,7 +42,7 @@ onMounted(async () => {
   }
 
   try {
-    const version = await api.app.getVersion()
+    const version = await getElectronApi().app.getVersion()
     state.value = {
       status: 'ready',
       version,
@@ -59,15 +60,15 @@ onMounted(async () => {
 })
 
 function openFileDialog() {
-  void window.electronAPI?.dialog.openFile()
+  getElectronApi().dialog.openFile()
 }
 
 function toggleDevTools() {
-  void window.electronAPI?.window.toggleDevTools()
+  getElectronApi().window.toggleDevTools()
 }
 
 function openElectronDocs() {
-  void window.electronAPI?.shell.openExternal('https://www.electronjs.org/')
+  getElectronApi().shell.openExternal('https://www.electronjs.org/')
 }
 </script>
 
